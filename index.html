@@ -29,7 +29,7 @@
     h2 { font-size: 1.2em; margin: 0 0 6px; }
 
     /* ── Layout wrapper ── */
-    .page { max-width: 800px; margin: 0 auto; padding: 16px; }
+    .page { max-width: 1000px; margin: 0 auto; padding: 16px; }
 
     /* ── Bio section ── */
     .bio-table { width: 100%; border-collapse: collapse; }
@@ -50,7 +50,7 @@
 
     /* ── Paper rows ── */
     .papers-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
-    .paper-thumb { width: 28%; padding: 10px 8px; vertical-align: middle; }
+    .paper-thumb { width: 25%; padding: 10px 8px; vertical-align: middle; }
     .paper-thumb img { width: 100%; border-radius: 4px; display: block; }
     .paper-info { width: 80%; padding: 10px 16px; vertical-align: middle; }
     .paper-info p { margin: 6px 0 0; color: #555; font-size: 0.91em; }
@@ -99,13 +99,15 @@
             Professor Jason Fleischer. I also collaborate with the
             <a href="https://light.princeton.edu/">Computational Imaging Lab</a>, supervised by Professor Felix Heide.
             My research focuses on Computational Imaging and Optics, AI in healthcare and medicine,
-            Computer Vision and Neural Rendering.
+            Computer Vision and Wearable Sensors.
           </p>
           <div class="bio-links">
             <a href="mailto:amir.vazifeh@princeton.edu">Email</a> &nbsp;/&nbsp;
             <a href="data/Vazifeh - CV.pdf">CV</a> &nbsp;/&nbsp;
-            <a href="https://scholar.google.com/citations?user=Edu0tzkAAAAJ&hl=en">Scholar</a> &nbsp;/&nbsp;
-            <a href="https://github.com/amirrezavazifeh">GitHub</a>
+            <a href="https://scholar.google.com/citations?user=Edu0tzkAAAAJ&hl=en">Google Scholar</a> &nbsp;/&nbsp;
+            <a href="https://github.com/amirrezavazifeh">GitHub</a> &nbsp;/&nbsp;
+            <a href="https://www.linkedin.com/in/amir-reza-vazifeh/">LinkedIn</a> &nbsp;/&nbsp;
+            <a href="https://orcid.org/0000-0003-0777-305X">ORCiD</a>
           </div>
         </td>
         <td class="bio-photo">
@@ -119,31 +121,31 @@
 
   <hr class="divider">
 
-  <!-- ══════════════════════════════════════════
-       RESEARCH
-  ══════════════════════════════════════════ -->
-  <div class="section-header">
-    <h2>Research</h2>
-    <p>
-      I'm interested in computer vision, deep learning, generative AI, and image processing.
-      Most of my research is about inferring the physical world (shape, motion, color, light, etc.)
-      from images, usually with radiance fields. Some papers are <span class="highlight">highlighted</span>.
-    </p>
-  </div>
+<!-- ══════════════════════════════════════════
+     RESEARCH
+══════════════════════════════════════════ -->
+<div class="section-header">
+  <h2>Research</h2>
+  <p>
+    Representative papers are <span class="highlight">highlighted</span>.
+  </p>
+</div>
 
-  <table class="papers-table">
-    <tbody>
+<br>
+<table class="papers-table" style="border-collapse: collapse; width: 100%;">
+  <tbody>
 
-      <!-- Paper 1: Seeing Through Fibers — HIGHLIGHTED -->
-      <tr class="paper-highlighted">
-        <td class="paper-thumb">
-          <img src="images/FB_thumbnail.png" alt="Fiber Bundle Imaging">
-        </td>
-        <td class="paper-info">
-          <a href="https://light.princeton.edu/publication/seeing-through-fibers/">
-            <span class="papertitle">Seeing Through Fibers: Unsupervised Image Reconstruction in Fiber Bundle Imaging Systems</span>
-          </a>
-          <br>
+    <!-- Paper 1: Seeing Through Fibers — HIGHLIGHTED -->
+    <tr class="paper-highlighted" style="border-top: 1px solid #e0e0e0;">
+      <td class="paper-thumb" style="width: 25%; padding: 20px 16px 20px 0; vertical-align: middle;">
+        <img src="images/FB_thumbnail.png" style="width: 100%;" alt="Fiber Bundle Imaging">
+      </td>
+      <td class="paper-info" style="padding: 20px 0; vertical-align: middle;">
+        <a href="https://light.princeton.edu/publication/seeing-through-fibers/" style="text-decoration: none;">
+          <span class="papertitle" style="font-weight: 600; font-size: 15px;">Seeing Through Fibers: Unsupervised Image Reconstruction in Fiber Bundle Imaging Systems</span>
+        </a>
+        <br>
+        <span style="font-size: 13px; color: #444; margin-top: 4px; display: inline-block;">
           <strong>Amir Reza Vazifeh</strong>,
           <a href="https://congliwang.github.io/">Congli Wang</a>,
           <a href="https://amogh7joshi.github.io/">Amogh Joshi</a>,
@@ -151,102 +153,148 @@
           <a href="https://jipengsun.github.io/">Jipeng Sun</a>,
           <a href="https://jiwoonyeom.wordpress.com/">Jiwoon Yeom</a>,
           <a href="https://ece.princeton.edu/people/jason-w-fleischer">Jason W. Fleischer</a>,
-          <a href="#">José S. Pulido</a>,
+          <a href="https://www.willseye.org/jose-pulido/">José S. Pulido</a>,
           <a href="https://www.cs.princeton.edu/~fheide/">Felix Heide</a>
-          <br>
-          <em>Optics Express</em>, 2026
-          <br>
-          <span class="paper-links">
-            <a href="https://light.princeton.edu/publication/seeing-through-fibers/">project page</a> /
-            <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-34-5-7429">publication</a> /
-            <a href="https://github.com/princeton-computational-imaging/Neural-Field-Fiber-Bundle-Imaging">code</a>
-          </span>
-          <p>We introduce an unsupervised method that reconstructs high-resolution fiber bundle images from misaligned bursts without calibration or paired data.</p>
-        </td>
-      </tr>
+        </span>
+        <br>
+        <span style="font-size: 13px; color: #666; font-style: italic;">Optics Express</span>
+        <span style="font-size: 12px; background: #f0f0f0; color: #555; border-radius: 4px; padding: 1px 7px; margin-left: 6px; font-style: normal;">2026</span>
+        <br>
+        <span class="paper-links" style="font-size: 12.5px; margin-top: 5px; display: inline-block;">
+          <a href="https://light.princeton.edu/publication/seeing-through-fibers/" style="margin-right: 6px;">project page</a> /
+          <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-34-5-7429" style="margin: 0 6px;">publication</a> /
+          <a href="https://github.com/princeton-computational-imaging/Neural-Field-Fiber-Bundle-Imaging" style="margin-left: 6px;">code</a>
+        </span>
+        <p style="font-size: 13px; color: #555; margin: 6px 0 0;">We introduce an unsupervised method that reconstructs high-resolution fiber bundle images from misaligned bursts without calibration or paired data.</p>
+      </td>
+    </tr>
 
-      <!-- Paper 2: Snapshot Hyperspectral Imaging -->
-      <tr class="paper-plain">
-        <td class="paper-thumb">
-          <img src="images/snapshot_INR_thumbnail.png" alt="Hyperspectral Imaging">
-        </td>
-        <td class="paper-info">
-          <a href="https://opg.optica.org/abstract.cfm?URI=COSI-2025-CTu1B.5">
-            <span class="papertitle">Snapshot Hyperspectral Imaging via Compressive Sensing and Implicit Neural Representation</span>
-          </a>
-          <br>
-          <a href="#">Jatearoon Boondicharern</a>,
+    <!-- Paper 2: Cardiomyopathy ML -->
+    <tr class="paper-plain" style="border-top: 1px solid #e0e0e0;">
+      <td class="paper-thumb" style="padding: 20px 16px 20px 0; vertical-align: middle;">
+        <img src="images/ECG_cardiomyopathy_thumbnail.png" style="height: 125px; vertical-align: middle;" alt="Cardiomyopathy ML">
+      </td>
+      <td class="paper-info" style="padding: 20px 0; vertical-align: middle;">
+        <a href="https://www.mdpi.com/2075-4418/16/5/719" style="text-decoration: none;">
+          <span class="papertitle" style="font-weight: 600; font-size: 15px;">An Open-Source Analysis of Cardiomyopathy Using Machine Learning and Electrocardiograms</span>
+        </a>
+        <br>
+        <span style="font-size: 13px; color: #444; margin-top: 4px; display: inline-block;">
+          <a href="https://www.linkedin.com/in/arda-altintepe-584b5b306/">Arda Altintepe</a>,
+          <a href="https://www.getcare.hackensackmeridianhealth.org/provider/asu-rustemli/1592922">Asu Rustemli</a>,
           <strong>Amir Reza Vazifeh</strong>,
           <a href="https://ece.princeton.edu/people/jason-w-fleischer">Jason W. Fleischer</a>
-          <br>
-          <em>Computational Optical Sensing and Imaging (COSI), Optica Imaging Congress</em>, 2025
-          <br>
-          <span class="paper-links">
-            <a href="https://opg.optica.org/abstract.cfm?URI=COSI-2025-CTu1B.5">publication</a>
-            <a href="https://github.com/amirrezavazifeh/Snapshot-Hyperspectral-Imaging-Neural-Field">code</a> /
-          </span>
-          <p>Parameterizing a scene with a Delaunay tetrahedralization and a neural field yields a scene representation that is accurate, fast to render, easy to edit, and backwards-compatible.</p>
-        </td>
-      </tr>
+        </span>
+        <br>
+        <span style="font-size: 13px; color: #666; font-style: italic;">Diagnostics</span>
+        <span style="font-size: 12px; background: #f0f0f0; color: #555; border-radius: 4px; padding: 1px 7px; margin-left: 6px; font-style: normal;">2026</span>
+        <br>
+        <span class="paper-links" style="font-size: 12.5px; margin-top: 5px; display: inline-block;">
+          <a href="https://www.mdpi.com/2075-4418/16/5/719" style="margin-right: 6px;">publication</a> /
+          <a href="https://github.com/againh3x/ECGcardiomyopathy" style="margin-left: 6px;">code</a>
+        </span>
+        <p style="font-size: 13px; color: #555; margin: 6px 0 0;">We developed an open-source ECG-based machine learning pipeline to distinguish hypertrophic from dilated cardiomyopathy subtypes using standard and vectorcardiogram features.</p>
+      </td>
+    </tr>
 
-      <!-- Paper 3: Manifold Learning ECG -->
-      <tr class="paper-plain">
-        <td class="paper-thumb">
-          <img src="images/ECG_manifold_thumbnail.png" alt="ECG with Manifold Learning">
-        </td>
-        <td class="paper-info">
-          <a href="https://arxiv.org/abs/2506.16494">
-            <span class="papertitle">Manifold Learning for Personalized and Label-Free Detection of Cardiac Arrhythmias</span>
-          </a>
-          <br>
+    <!-- Paper 3: Snapshot Hyperspectral Imaging -->
+    <tr class="paper-plain" style="border-top: 1px solid #e0e0e0;">
+      <td class="paper-thumb" style="padding: 20px 16px 20px 0; vertical-align: middle;">
+        <img src="images/snapshot_INR_thumbnail.png" style="width: 100%;" alt="Hyperspectral Imaging">
+      </td>
+      <td class="paper-info" style="padding: 20px 0; vertical-align: middle;">
+        <a href="https://opg.optica.org/abstract.cfm?URI=COSI-2025-CTu1B.5" style="text-decoration: none;">
+          <span class="papertitle" style="font-weight: 600; font-size: 15px;">Snapshot Hyperspectral Imaging via Compressive Sensing and Implicit Neural Representation</span>
+        </a>
+        <br>
+        <span style="font-size: 13px; color: #444; margin-top: 4px; display: inline-block;">
+          <a href="https://www.linkedin.com/in/jatearoonkeeneb/">Jatearoon Boondicharern</a>,
           <strong>Amir Reza Vazifeh</strong>,
           <a href="https://ece.princeton.edu/people/jason-w-fleischer">Jason W. Fleischer</a>
-          <br>
-          <em>arXiv</em>, 2025
-          <br>
-          <span class="paper-links">
-            <a href="https://github.com/amirrezavazifeh/ECG-with-Manifold-Learning">code</a> /
-            <a href="https://arxiv.org/abs/2506.16494">preprint</a>
-          </span>
-          <p>Parameterizing a scene with a Delaunay tetrahedralization and a neural field yields a scene representation that is accurate, fast to render, easy to edit, and backwards-compatible.</p>
-        </td>
-      </tr>
+        </span>
+        <br>
+        <span style="font-size: 13px; color: #666; font-style: italic;">Computational Optical Sensing and Imaging (COSI), Optica Imaging Congress</span>
+        <span style="font-size: 12px; background: #f0f0f0; color: #555; border-radius: 4px; padding: 1px 7px; margin-left: 6px; font-style: normal;">2025</span>
+        <br>
+        <span class="paper-links" style="font-size: 12.5px; margin-top: 5px; display: inline-block;">
+          <a href="https://opg.optica.org/abstract.cfm?URI=COSI-2025-CTu1B.5" style="margin-right: 6px;">publication</a> /
+          <a href="https://github.com/amirrezavazifeh/Snapshot-Hyperspectral-Imaging-Neural-Field" style="margin-left: 6px;">code</a>
+        </span>
+        <p style="font-size: 13px; color: #555; margin: 6px 0 0;">We propose a snapshot hyperspectral imaging method using randomized aperture codes and implicit neural representations.</p>
+      </td>
+    </tr>
 
-      <!-- Paper 3: Cardiomyopathy ML -->
-      <tr class="paper-plain">
-        <td class="paper-thumb">
-          <img src="images/ECG_cardiomyopathy3.png" alt="Cardiomyopathy ML">
-        </td>
-        <td class="paper-info">
-          <a href="https://www.mdpi.com/2075-4418/16/5/719">
-            <span class="papertitle">An Open-Source Analysis of Cardiomyopathy Using Machine Learning and Electrocardiograms</span>
-          </a>
-          <br>
-          <a href="#">Arda Altintepe</a>,
-          <a href="#">Asu Rustemli</a>,
+    <!-- Paper 4: Manifold Learning ECG -->
+    <tr class="paper-highlighted" style="border-top: 1px solid #e0e0e0;">
+      <td class="paper-thumb" style="width: 25%; padding: 20px 16px 20px 0; vertical-align: middle;">
+        <img src="images/ECG_manifold_thumbnail.png" style="height: 125px; vertical-align: middle;" alt="ECG with Manifold Learning">
+      </td>
+      <td class="paper-info" style="padding: 20px 0; vertical-align: middle;">
+        <a href="https://arxiv.org/abs/2506.16494" style="text-decoration: none;">
+          <span class="papertitle" style="font-weight: 600; font-size: 15px;">Manifold Learning for Personalized and Label-Free Detection of Cardiac Arrhythmias</span>
+        </a>
+        <br>
+        <span style="font-size: 13px; color: #444; margin-top: 4px; display: inline-block;">
           <strong>Amir Reza Vazifeh</strong>,
           <a href="https://ece.princeton.edu/people/jason-w-fleischer">Jason W. Fleischer</a>
-          <br>
-          <em>Diagnostics</em>, 2026
-          <br>
-          <span class="paper-links">
-            <a href="https://github.com/againh3x/ECGcardiomyopathy">code</a> /
-            <a href="https://www.mdpi.com/2075-4418/16/5/719">publication</a>
-          </span>
-        </td>
-      </tr>
+        </span>
+        <br>
+        <span style="font-size: 13px; color: #666; font-style: italic;">arXiv</span>
+        <span style="font-size: 12px; background: #f0f0f0; color: #555; border-radius: 4px; padding: 1px 7px; margin-left: 6px; font-style: normal;">2025</span>
+        <br>
+        <span class="paper-links" style="font-size: 12.5px; margin-top: 5px; display: inline-block;">
+          <a href="https://arxiv.org/abs/2506.16494" style="margin-right: 6px;">preprint</a> /
+          <a href="https://github.com/amirrezavazifeh/ECG-with-Manifold-Learning" style="margin-left: 6px;">code</a>
+        </span>
+        <p style="font-size: 13px; color: #555; margin: 6px 0 0;">We use nonlinear dimensionality reduction for unsupervised, personalized heartbeat phenotyping from ECGs and arrhythmia detection.</p>
+      </td>
+    </tr>
 
-      <!-- Paper 4: Ultralow-Power ECG Patch -->
-      <tr class="paper-plain">
-        <td class="paper-thumb">
+    <!-- Paper 5: Advancing Personalized Healthcare -->
+    <tr class="paper-plain" style="border-top: 1px solid #e0e0e0;">
+      <td class="paper-thumb" style="padding: 20px 16px 20px 0; vertical-align: middle;">
+        <img src="images/advancing_personalized_healthcare_thumbnail.png" style="height: 190px; vertical-align: middle;" alt="Advancing Personalized Healthcare">
+      </td>
+      <td class="paper-info" style="padding: 20px 0; vertical-align: middle;">
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0079642523001160" style="text-decoration: none;">
+          <span class="papertitle" style="font-weight: 600; font-size: 15px;">Advancing personalized healthcare and entertainment: Progress in energy harvesting materials and techniques of self-powered wearable devices</span>
+        </a>
+        <br>
+        <span style="font-size: 13px; color: #444; margin-top: 4px; display: inline-block;">
+          <a href="https://scholar.google.com/citations?user=LYSqZ3UAAAAJ&hl=en">Prithu Bhatnagar</a>,
+          <a href="https://scholar.google.com/citations?user=t_MKk7UAAAAJ&hl=en">Sadeq Hooshmand Zaferani</a>,
+          <a href="https://scholar.google.com/citations?user=eCjj6YQAAAAJ&hl=en">Nassim Rafiefard</a>,
+          <a href="https://www.linkedin.com/in/bardia-baraeinejad/?originalSubdomain=ir">Bardia Baraeinejad</a>,
+          <strong>Amir Reza Vazifeh</strong>,
+          <a href="https://scholar.google.com/citations?user=GRWqVZsAAAAJ&hl=en">Raheleh Mohammadpour</a>,
+          <a href="https://scholar.google.com/citations?user=Oga9YJ8AAAAJ&hl=en">Reza Ghomashchi</a>,
+          <a href="#">Harald Dillersberger</a>,
+          <a href="#">Douglas Tham</a>,
+          <a href="https://ece.ncsu.edu/people/dvashae/">Daryoosh Vashaee</a>
+        </span>
+        <br>
+        <span style="font-size: 13px; color: #666; font-style: italic;">Progress in Materials Science (IF:40)</span>
+        <span style="font-size: 12px; background: #f0f0f0; color: #555; border-radius: 4px; padding: 1px 7px; margin-left: 6px; font-style: normal;">2023</span>
+        <br>
+        <span class="paper-links" style="font-size: 12.5px; margin-top: 5px; display: inline-block;">
+          <a href="https://www.sciencedirect.com/science/article/abs/pii/S0079642523001160">publication</a>
+        </span>
+        <p style="font-size: 13px; color: #555; margin: 6px 0 0;">We reviewed recent advances in self-powered wearable devices, covering energy harvesting techniques, power management, and their application in long-term health and wellness monitoring.</p>
+      </td>
+    </tr>
+
+    <!-- Paper 6: Ultralow-Power ECG Patch -->
+    <tr class="paper-highlighted" style="border-top: 1px solid #e0e0e0;">
+      <td class="paper-thumb" style="padding: 20px 16px 20px 0; vertical-align: middle;">
         <img src="images/ECG_patch_thumbnail.png" alt="ECG Patch">
-        </td>
-        <td class="paper-info">
-          <a href="https://ieeexplore.ieee.org/abstract/document/9745967">
-            <span class="papertitle">Design and Implementation of an Ultralow-Power ECG Patch and Smart Cloud-Based Platform</span>
-          </a>
-          <br>
-          <a href="#">Bardia Baraeinejad</a>,
+      </td>
+      <td class="paper-info" style="padding: 20px 0; vertical-align: middle;">
+        <a href="https://ieeexplore.ieee.org/abstract/document/9745967" style="text-decoration: none;">
+          <span class="papertitle" style="font-weight: 600; font-size: 15px;">Design and Implementation of an Ultralow-Power ECG Patch and Smart Cloud-Based Platform</span>
+        </a>
+        <br>
+        <span style="font-size: 13px; color: #444; margin-top: 4px; display: inline-block;">
+          <a href="https://www.linkedin.com/in/bardia-baraeinejad/?originalSubdomain=ir">Bardia Baraeinejad</a>,
           <a href="#">Masood Fallah Shayan</a>,
           <strong>Amir Reza Vazifeh</strong>,
           <a href="#">Diba Rashidi</a>,
@@ -254,54 +302,27 @@
           <a href="#">Hamed Tavolinejad</a>,
           <a href="#">Pouya Gorji</a>,
           <a href="#">Parsa Razmara</a>,
-          <a href="#">Kiarash Vaziri</a>,
-          <a href="#">Daryoosh Vashaee</a>,
-          <a href="#">Mohammad Fakharzadeh</a>
-          <br>
-          <em>IEEE Transactions on Instrumentation and Measurement</em>, 2022
-          <br>
-          <span class="paper-links">
-            <a href="https://ieeexplore.ieee.org/abstract/document/9745967">publication</a>
-          </span>
-        </td>
-      </tr>
+          <a href="https://kiarashvaziri.github.io/">Kiarash Vaziri</a>,
+          <a href="https://ece.ncsu.edu/people/dvashae/">Daryoosh Vashaee</a>,
+          <a href="https://scholar.google.com/citations?user=GowIg0UAAAAJ&hl=en">Mohammad Fakharzadeh</a>
+        </span>
+        <br>
+        <span style="font-size: 13px; color: #666; font-style: italic;">IEEE Transactions on Instrumentation and Measurement</span>
+        <span style="font-size: 12px; background: #f0f0f0; color: #555; border-radius: 4px; padding: 1px 7px; margin-left: 6px; font-style: normal;">2022</span>
+        <br>
+        <span class="paper-links" style="font-size: 12.5px; margin-top: 5px; display: inline-block;">
+          <a href="https://ieeexplore.ieee.org/abstract/document/9745967">publication</a>
+        </span>
+        <p style="font-size: 13px; color: #555; margin: 6px 0 0;">We developed an ultra-low-power, lightweight ECG patch for long-term monitoring, paired with an AI-assisted cloud platform for denoising and arrhythmia detection.</p>
+      </td>
+    </tr>
 
-      <!-- Paper 5: Advancing personlized healthcare -->
-      <tr class="paper-plain">
-        <td class="paper-thumb">
-          <img src="images/advancing_personalized_healthcare_thumbnail.png" alt="Advancing Personalized Healthcare">
-        </td>
-        <td class="paper-info">
-          <a href="https://www.sciencedirect.com/science/article/abs/pii/S0079642523001160">
-            <span class="papertitle">Advancing personalized healthcare and entertainment: Progress in energy harvesting materials and techniques of self-powered wearable devices</span>
-          </a>
-          <br>
-          <a href="#">Prithu Bhatnagar</a>,
-          <a href="#">Sadeq Hooshmand Zaferani</a>,
-          <a href="#">Nassim Rafiefard</a>,
-          <a href="#">Bardia Baraeinejad</a>,
-          <strong>Amir Reza Vazifeh</strong>,
-          <a href="#">Raheleh Mohammadpour</a>,
-          <a href="#">Reza Ghomashchi</a>,
-          <a href="#">Harald Dillersberger</a>,
-          <a href="#">Douglas Tham</a>,
-          <a href="#">Daryoosh Vashaee</a>
-          <br>
-          <em>Progress in Materials Science (IF:40)</em>, 2023
-          <br>
-          <span class="paper-links">
-            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0079642523001160">publication</a>
-          </span>
-        </td>
-      </tr>
+  </tbody>
+</table>
 
-    </tbody>
-  </table>
-
-  <hr class="divider">
-
+<hr class="divider">
 <!-- ══════════════════════════════════════════
-     MISCELLANEA — Teaching only
+     MISCELLANEA — Teaching & Mentorship + Review
 ══════════════════════════════════════════ -->
 <div class="section-header">
   <h2>Miscellanea</h2>
@@ -312,12 +333,13 @@
     <tr>
       <td class="misc-label">
         <div class="colored-box" style="background-color: #edd892;">
-          <h2>Teaching</h2>
+          <h2>Teaching &<br>Mentorship</h2>
         </div>
       </td>
       <td class="misc-content">
         <a href="https://registrar.princeton.edu/course-offerings/course-details?term=1264&courseid=013751">ECE 452: Biomedical Imaging</a> — Graduate Student Instructor, Spring 2025 & 2026<br>
-        <a href="https://registrar.princeton.edu/course-offerings/course-details?term=1252&courseid=014725">ECE 435/535: Machine Learning and Pattern Recognition</a> — Graduate Student Instructor, Fall 2024
+        <a href="https://registrar.princeton.edu/course-offerings/course-details?term=1252&courseid=014725">ECE 435/535: Machine Learning and Pattern Recognition</a> — Graduate Student Instructor, Fall 2024<br>
+        <a href="https://scienceoutreach.princeton.edu/laboratory-learning-program">Laboratory Learning Program (LLP)</a> — Mentoring high school students, 2025
       </td>
     </tr>
     <tr>
