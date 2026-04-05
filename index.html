@@ -50,7 +50,7 @@
 
     /* ── Paper rows ── */
     .papers-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
-    .paper-thumb { width: 20%; padding: 10px 16px; vertical-align: middle; }
+    .paper-thumb { width: 28%; padding: 10px 8px; vertical-align: middle; }
     .paper-thumb img { width: 100%; border-radius: 4px; display: block; }
     .paper-info { width: 80%; padding: 10px 16px; vertical-align: middle; }
     .paper-info p { margin: 6px 0 0; color: #555; font-size: 0.91em; }
@@ -103,14 +103,14 @@
           </p>
           <div class="bio-links">
             <a href="mailto:amir.vazifeh@princeton.edu">Email</a> &nbsp;/&nbsp;
-            <a href="data/CV.pdf">CV</a> &nbsp;/&nbsp;
+            <a href="data/Vazifeh - CV.pdf">CV</a> &nbsp;/&nbsp;
             <a href="https://scholar.google.com/citations?user=Edu0tzkAAAAJ&hl=en">Scholar</a> &nbsp;/&nbsp;
             <a href="https://github.com/amirrezavazifeh">GitHub</a>
           </div>
         </td>
         <td class="bio-photo">
-          <a href="images/JonBarron.jpg">
-            <img src="images/JonBarron.jpg" alt="Profile photo">
+          <a href="images/Amir Reza Vazifeh.jpg">
+            <img src="images/Amir Reza Vazifeh.jpg" alt="Profile photo">
           </a>
         </td>
       </tr>
@@ -137,7 +137,7 @@
       <!-- Paper 1: Seeing Through Fibers — HIGHLIGHTED -->
       <tr class="paper-highlighted">
         <td class="paper-thumb">
-          <img src="images/zipmap.jpg" alt="Fiber Bundle Imaging">
+          <img src="images/FB_thumbnail.png" alt="Fiber Bundle Imaging">
         </td>
         <td class="paper-info">
           <a href="https://light.princeton.edu/publication/seeing-through-fibers/">
@@ -168,7 +168,7 @@
       <!-- Paper 2: Snapshot Hyperspectral Imaging -->
       <tr class="paper-plain">
         <td class="paper-thumb">
-          <img src="images/radmesh_before.jpg" alt="Hyperspectral Imaging">
+          <img src="images/snapshot_INR_thumbnail.png" alt="Hyperspectral Imaging">
         </td>
         <td class="paper-info">
           <a href="https://opg.optica.org/abstract.cfm?URI=COSI-2025-CTu1B.5">
@@ -182,8 +182,31 @@
           <em>Computational Optical Sensing and Imaging (COSI), Optica Imaging Congress</em>, 2025
           <br>
           <span class="paper-links">
-            <a href="https://github.com/amirrezavazifeh/Snapshot-Hyperspectral-Imaging-Neural-Field">code</a> /
             <a href="https://opg.optica.org/abstract.cfm?URI=COSI-2025-CTu1B.5">publication</a>
+            <a href="https://github.com/amirrezavazifeh/Snapshot-Hyperspectral-Imaging-Neural-Field">code</a> /
+          </span>
+          <p>Parameterizing a scene with a Delaunay tetrahedralization and a neural field yields a scene representation that is accurate, fast to render, easy to edit, and backwards-compatible.</p>
+        </td>
+      </tr>
+
+      <!-- Paper 3: Manifold Learning ECG -->
+      <tr class="paper-plain">
+        <td class="paper-thumb">
+          <img src="images/ECG_manifold_thumbnail.png" alt="ECG with Manifold Learning">
+        </td>
+        <td class="paper-info">
+          <a href="https://arxiv.org/abs/2506.16494">
+            <span class="papertitle">Manifold Learning for Personalized and Label-Free Detection of Cardiac Arrhythmias</span>
+          </a>
+          <br>
+          <strong>Amir Reza Vazifeh</strong>,
+          <a href="https://ece.princeton.edu/people/jason-w-fleischer">Jason W. Fleischer</a>
+          <br>
+          <em>arXiv</em>, 2025
+          <br>
+          <span class="paper-links">
+            <a href="https://github.com/amirrezavazifeh/ECG-with-Manifold-Learning">code</a> /
+            <a href="https://arxiv.org/abs/2506.16494">preprint</a>
           </span>
           <p>Parameterizing a scene with a Delaunay tetrahedralization and a neural field yields a scene representation that is accurate, fast to render, easy to edit, and backwards-compatible.</p>
         </td>
@@ -192,7 +215,7 @@
       <!-- Paper 3: Cardiomyopathy ML -->
       <tr class="paper-plain">
         <td class="paper-thumb">
-          <img src="images/nexf_before.jpg" alt="Cardiomyopathy ML">
+          <img src="images/ECG_cardiomyopathy3.png" alt="Cardiomyopathy ML">
         </td>
         <td class="paper-info">
           <a href="https://www.mdpi.com/2075-4418/16/5/719">
@@ -215,7 +238,9 @@
 
       <!-- Paper 4: Ultralow-Power ECG Patch -->
       <tr class="paper-plain">
-        <td class="paper-thumb"></td>
+        <td class="paper-thumb">
+        <img src="images/ECG_patch_thumbnail.png" alt="ECG Patch">
+        </td>
         <td class="paper-info">
           <a href="https://ieeexplore.ieee.org/abstract/document/9745967">
             <span class="papertitle">Design and Implementation of an Ultralow-Power ECG Patch and Smart Cloud-Based Platform</span>
@@ -241,40 +266,78 @@
         </td>
       </tr>
 
+      <!-- Paper 5: Advancing personlized healthcare -->
+      <tr class="paper-plain">
+        <td class="paper-thumb">
+          <img src="images/advancing_personalized_healthcare_thumbnail.png" alt="Advancing Personalized Healthcare">
+        </td>
+        <td class="paper-info">
+          <a href="https://www.sciencedirect.com/science/article/abs/pii/S0079642523001160">
+            <span class="papertitle">Advancing personalized healthcare and entertainment: Progress in energy harvesting materials and techniques of self-powered wearable devices</span>
+          </a>
+          <br>
+          <a href="#">Prithu Bhatnagar</a>,
+          <a href="#">Sadeq Hooshmand Zaferani</a>,
+          <a href="#">Nassim Rafiefard</a>,
+          <a href="#">Bardia Baraeinejad</a>,
+          <strong>Amir Reza Vazifeh</strong>,
+          <a href="#">Raheleh Mohammadpour</a>,
+          <a href="#">Reza Ghomashchi</a>,
+          <a href="#">Harald Dillersberger</a>,
+          <a href="#">Douglas Tham</a>,
+          <a href="#">Daryoosh Vashaee</a>
+          <br>
+          <em>Progress in Materials Science (IF:40)</em>, 2023
+          <br>
+          <span class="paper-links">
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0079642523001160">publication</a>
+          </span>
+        </td>
+      </tr>
+
     </tbody>
   </table>
 
   <hr class="divider">
 
-  <!-- ══════════════════════════════════════════
-       MISCELLANEA — Teaching only
-  ══════════════════════════════════════════ -->
-  <div class="section-header">
-    <h2>Miscellanea</h2>
-  </div>
+<!-- ══════════════════════════════════════════
+     MISCELLANEA — Teaching only
+══════════════════════════════════════════ -->
+<div class="section-header">
+  <h2>Miscellanea</h2>
+</div>
 
-  <table class="misc-table">
-    <tbody>
-      <tr>
-        <td class="misc-label">
-          <div class="colored-box" style="background-color: #edd892;">
-            <h2>Teaching</h2>
-          </div>
-        </td>
-        <td class="misc-content">
-          <a href="http://inst.eecs.berkeley.edu/~cs188/sp11/announcements.html">Graduate Student Instructor, CS188 Spring 2011</a><br>
-          <a href="http://inst.eecs.berkeley.edu/~cs188/fa10/announcements.html">Graduate Student Instructor, CS188 Fall 2010</a><br>
-          <a href="http://aima.cs.berkeley.edu/">Figures, "Artificial Intelligence: A Modern Approach", 3rd Edition</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<table class="misc-table">
+  <tbody>
+    <tr>
+      <td class="misc-label">
+        <div class="colored-box" style="background-color: #edd892;">
+          <h2>Teaching</h2>
+        </div>
+      </td>
+      <td class="misc-content">
+        <a href="https://registrar.princeton.edu/course-offerings/course-details?term=1264&courseid=013751">ECE 452: Biomedical Imaging</a> — Graduate Student Instructor, Spring 2025 & 2026<br>
+        <a href="https://registrar.princeton.edu/course-offerings/course-details?term=1252&courseid=014725">ECE 435/535: Machine Learning and Pattern Recognition</a> — Graduate Student Instructor, Fall 2024
+      </td>
+    </tr>
+    <tr>
+      <td class="misc-label">
+        <div class="colored-box" style="background-color: #b0d8f5;">
+          <h2>Review</h2>
+        </div>
+      </td>
+      <td class="misc-content">
+        <a href="https://www.embs.org/jbhi/">IEEE Journal of Biomedical and Health Informatics</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
   <!-- ══════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════ -->
   <div class="footer">
-    Feel free to steal this website's <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.
+    Website design from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron source code</a>.
   </div>
 
 </div>
