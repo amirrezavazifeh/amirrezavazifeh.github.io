@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Global Footprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #07080f;
+    --bg2:     #0d0f1a;
+    --surface: #12141f;
+    --border:  rgba(255,255,255,0.07);
+    --text:    #f0f0e8;
+    --muted:   #6e7080;
+    --gold:    #f5c842;
+    --amber:   #f59e0b;
+    --warm:    #fde68a;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.85rem 2.5rem;
+    background: rgba(7,8,15,0.78); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family:'DM Serif Display',serif; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+  .nav-links { display:flex; gap:2rem; }
+  .nav-links a { font-size:11.5px; font-weight:500; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--gold); border-bottom:1px solid var(--gold); padding-bottom:2px; }
+
+  /* HERO */
+  #hero {
+    min-height: 44vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 4.5rem 2rem 1.8rem;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .hero-glow { position:absolute; border-radius:50%; filter:blur(110px); pointer-events:none; opacity:.26; }
+  .glow-1 { width:500px; height:500px; background:var(--amber); top:-170px; left:-90px; }
+  .glow-2 { width:400px; height:400px; background:var(--gold);  bottom:-110px; right:-60px; }
+
+  .hero-eyebrow { font-size:10.5px; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); margin-bottom:.9rem; opacity:0; animation:fadeUp .7s .15s forwards; }
+  .hero-title {
+    font-family:'DM Serif Display',serif; font-size:clamp(28px,4vw,48px); font-weight:400; line-height:1.1; letter-spacing:-.5px;
+    background:linear-gradient(135deg,var(--warm) 0%,var(--gold) 55%,var(--amber) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    opacity:0; animation:fadeUp .7s .3s forwards;
+  }
+  .hero-sub { margin-top:.7rem; font-size:14px; color:var(--muted); font-weight:300; opacity:0; animation:fadeUp .7s .45s forwards; }
+  .hero-sub strong { color:var(--gold); font-weight:500; }
+
+  .stats-row { display:flex; gap:1.1rem; margin-top:1.5rem; opacity:0; animation:fadeUp .7s .6s forwards; }
+  .stat-pill {
+    display:flex; flex-direction:column; align-items:center;
+    padding:.7rem 1.5rem;
+    background:rgba(255,255,255,0.025); border:1px solid rgba(245,200,66,.14); border-radius:11px;
+    position:relative; overflow:hidden;
+  }
+  .stat-pill::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(245,200,66,.06),rgba(245,158,11,.03)); }
+  .stat-n {
+    font-family:'DM Serif Display',serif; font-size:24px; font-weight:400;
+    background:linear-gradient(135deg,var(--warm),var(--gold));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1;
+  }
+  .stat-l { font-size:10px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-top:4px; }
+
+  .scroll-hint { margin-top:1.5rem; display:flex; flex-direction:column; align-items:center; gap:6px; opacity:0; animation:fadeUp .7s 1s forwards; color:var(--muted); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+  .scroll-arrow { width:15px; height:15px; border-right:1.5px solid var(--muted); border-bottom:1.5px solid var(--muted); transform:rotate(45deg); animation:bounce 1.6s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+  /* MAP */
+  #map-section { position:relative; padding:2.5rem 1.5rem 3.5rem; background:var(--bg2); }
+  .section-label { text-align:center; margin-bottom:1.6rem; }
+  .section-label h2 { font-family:'DM Serif Display',serif; font-size:clamp(17px,2.2vw,24px); font-weight:400; letter-spacing:-.3px; }
+  .section-label p { color:var(--muted); margin-top:4px; font-size:12.5px; }
+
+  #mapwrap {
+    position:relative; width:100%; max-width:1300px; margin:0 auto;
+    border-radius:16px; overflow:hidden;
+    border:1px solid rgba(245,200,66,.1);
+    box-shadow:0 0 70px rgba(245,200,66,.08),0 0 28px rgba(245,158,11,.05);
+  }
+  #mapsvg { display:block; width:100%; height:auto; }
+
+  .map-tooltip {
+    position:absolute; background:rgba(7,8,15,.96);
+    border:1px solid rgba(245,200,66,.22); border-radius:9px; padding:9px 14px;
+    font-size:12.5px; color:var(--text); pointer-events:none; display:none; z-index:20;
+    backdrop-filter:blur(14px); box-shadow:0 4px 20px rgba(0,0,0,.5); line-height:1.6;
+  }
+
+  .legend-row { display:flex; align-items:center; gap:18px; max-width:1300px; margin:1.1rem auto 0; font-size:11px; color:var(--muted); letter-spacing:.04em; }
+  .ld { width:22px; height:6px; border-radius:3px; display:inline-block; margin-right:6px; vertical-align:middle; }
+
+  /* COUNTRIES */
+  #countries-section { padding:3rem 2.5rem 2rem; max-width:1300px; margin:0 auto; }
+  .countries-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:9px; margin-top:1.4rem; }
+  .country-card {
+    display:flex; align-items:center; gap:10px; padding:10px 13px;
+    background:var(--surface); border:1px solid var(--border); border-radius:9px;
+    cursor:default; transition:all .22s; opacity:0; transform:translateY(14px);
+  }
+  .country-card.visible { opacity:1; transform:translateY(0); }
+  .country-card:hover { border-color:rgba(245,200,66,.32); background:rgba(245,200,66,.055); box-shadow:0 0 18px rgba(245,200,66,.08); transform:translateY(-2px); }
+  .country-card.lived:hover { border-color:rgba(245,158,11,.42); background:rgba(245,158,11,.07); box-shadow:0 0 18px rgba(245,158,11,.1); }
+  .c-flag { font-size:19px; line-height:1; flex-shrink:0; }
+  .c-info .c-name { font-size:12.5px; font-weight:500; color:var(--text); }
+  .c-info .c-iso  { font-size:10px; color:var(--muted); letter-spacing:.05em; margin-top:1px; }
+  .c-star { margin-left:auto; font-size:11px; color:var(--gold); }
+
+  /* WISHLIST */
+  #wishlist-section { padding:0 2.5rem 5rem; max-width:1300px; margin:0 auto; }
+  .wishlist-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:1.3rem; }
+  .wish-card {
+    display:flex; align-items:center; gap:8px; padding:7px 13px;
+    background:transparent; border:1px dashed rgba(255,255,255,.09); border-radius:8px;
+    font-size:12.5px; color:var(--muted); transition:all .2s; opacity:0; transform:translateY(12px);
+  }
+  .wish-card.visible { opacity:1; transform:translateY(0); }
+  .wish-card:hover { border-color:rgba(245,200,66,.28); color:var(--text); background:rgba(245,200,66,.04); }
+  .wish-flag { font-size:16px; }
+
+  .country-path { transition:fill .55s ease, opacity .4s ease; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+  body::after {
+    content:''; position:fixed; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:999; opacity:.4;
+  }
+  ::-webkit-scrollbar { width:5px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:rgba(245,200,66,.22); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"></div>
+  <div class="nav-links">
+    <a href="index.html">← Home</a>
+    <a href="#map-section" class="active">Global Footprint</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow glow-1"></div>
+  <div class="hero-glow glow-2"></div>
+  <div class="hero-eyebrow">Personal Travel Atlas</div>
+  <h1 class="hero-title">My Global Footprint</h1>
+  <p class="hero-sub"><strong>8</strong> countries visited across <strong>3</strong> continents</p>
+  <div class="stats-row">
+    <div class="stat-pill"><span class="stat-n">8</span><span class="stat-l">Countries</span></div>
+    <div class="stat-pill"><span class="stat-n">3</span><span class="stat-l">Continents</span></div>
+    <div class="stat-pill"><span class="stat-n">4</span><span class="stat-l">Lived in</span></div>
+  </div>
+  <div class="scroll-hint"><span>Scroll to explore</span><div class="scroll-arrow"></div></div>
+</section>
+
+<section id="map-section">
+  <div class="section-label">
+    <h2>Where I've Been</h2>
+    <p>Scroll down — watch the map come alive</p>
+  </div>
+  <div id="mapwrap">
+    <div class="map-tooltip" id="tip"></div>
+    <svg id="mapsvg" viewBox="0 0 960 500"></svg>
+  </div>
+  <div class="legend-row">
+    <span><span class="ld" style="background:linear-gradient(90deg,#f5c842,#f59e0b)"></span>Visited</span>
+    <span><span class="ld" style="background:#fde68a"></span>Lived / Worked / Studied</span>
+    <span><span class="ld" style="background:#1a1c2a;border:1px solid rgba(255,255,255,.07)"></span>Not visited</span>
+  </div>
+</section>
+
+<section id="countries-section">
+  <div class="section-label" style="text-align:left">
+    <h2>Countries Visited</h2>
+    <p>⭐ = lived, worked, or studied in</p>
+  </div>
+  <div class="countries-grid" id="ctags"></div>
+</section>
+
+<section id="wishlist-section">
+  <div class="section-label" style="text-align:left">
+    <h2>On My List</h2>
+    <p>Countries I want to explore next</p>
+  </div>
+  <div class="wishlist-grid" id="wtags"></div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+const visited = {
+  "Austria":       {iso:"AUT",flag:"🇦🇹",note:"Vienna",   lived:true},
+  "France":        {iso:"FRA",flag:"🇫🇷",note:"Lyon"},
+  "Iran":          {iso:"IRN",flag:"🇮🇷",note:"Tehran, Isfahan, Ardabil, Mazandaran, Mashhad, Kashan",       lived:true},
+  "Italy":         {iso:"ITA",flag:"🇮🇹",note:"Turin"},
+  "Switzerland":   {iso:"CHE",flag:"🇨🇭",note:"Geneva, Lausanne",      lived:true},
+  "Turkey":        {iso:"TUR",flag:"🇹🇷",note:"Istanbul"},
+  "UAE":           {iso:"ARE",flag:"🇦🇪",note:"Dubai"},
+  "United States": {iso:"USA",flag:"🇺🇸",note:"NYC, Seattle, Pittsburgh, Chicago, Urbana-Champaign, Fort Lauderdale, Princeton, Philadelphia, Washington D.C., Catskill",       lived:true}
+};
+const numericToIso = {"040":"AUT","250":"FRA","364":"IRN","380":"ITA","756":"CHE","792":"TUR","784":"ARE","840":"USA"};
+const isoSet   = new Set(Object.values(visited).map(v => v.iso));
+const livedSet = new Set(Object.values(visited).filter(v => v.lived).map(v => v.iso));
+
+// Cards
+const grid = document.getElementById('ctags');
+Object.entries(visited).sort(([a],[b]) => a.localeCompare(b)).forEach(([name,d]) => {
+  const el = document.createElement('div');
+  el.className = 'country-card' + (d.lived ? ' lived' : '');
+  el.innerHTML = `<span class="c-flag">${d.flag}</span><div class="c-info"><div class="c-name">${name}</div><div class="c-iso">${d.iso}</div></div>${d.lived?'<span class="c-star">⭐</span>':''}`;
+  grid.appendChild(el);
+});
+new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const idx = [...document.querySelectorAll('.country-card')].indexOf(e.target);
+    setTimeout(() => e.target.classList.add('visible'), idx * 35);
+    obs.unobserve(e.target);
+  });
+}, {threshold:.1}).observe && document.querySelectorAll('.country-card').forEach(c => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (!e.isIntersecting) return; const idx=[...document.querySelectorAll('.country-card')].indexOf(e.target); setTimeout(()=>e.target.classList.add('visible'),idx*35); obs.unobserve(e.target); });
+  },{threshold:.1}).observe(c);
+});
+
+// Wishlist
+[{name:"China",flag:"🇨🇳"},{name:"Tajikistan",flag:"🇹🇯"},{name:"Ireland",flag:"🇮🇪"},{name:"Norway",flag:"🇳🇴"},{name:"Canada",flag:"🇨🇦"},{name:"Brazil",flag:"🇧🇷"},{name:"Chile",flag:"🇨🇱"}]
+.forEach(d => {
+  const c = document.createElement('div'); c.className='wish-card';
+  c.innerHTML=`<span class="wish-flag">${d.flag}</span><span class="wish-name">${d.name}</span>`;
+  document.getElementById('wtags').appendChild(c);
+});
+document.querySelectorAll('.wish-card').forEach(c => {
+  new IntersectionObserver((entries,obs)=>{
+    entries.forEach(e=>{ if(!e.isIntersecting)return; const idx=[...document.querySelectorAll('.wish-card')].indexOf(e.target); setTimeout(()=>e.target.classList.add('visible'),idx*55); obs.unobserve(e.target); });
+  },{threshold:.1}).observe(c);
+});
+
+// Map
+const W=960,H=500;
+const proj=d3.geoNaturalEarth1().scale(160).translate([W/2,H/2+20]);
+const path=d3.geoPath().projection(proj);
+const svg=d3.select('#mapsvg');
+const tip=document.getElementById('tip');
+const mapbox=document.getElementById('mapwrap');
+
+svg.append('rect').attr('width',W).attr('height',H).attr('fill','#07080f');
+svg.append('path').datum(d3.geoGraticule()()).attr('d',path).attr('fill','none').attr('stroke','rgba(255,255,255,0.025)').attr('stroke-width',.5);
+
+const defs=svg.append('defs');
+['glow-gold','glow-amber'].forEach((id,i)=>{
+  const f=defs.append('filter').attr('id',id).attr('x','-30%').attr('y','-30%').attr('width','160%').attr('height','160%');
+  f.append('feGaussianBlur').attr('stdDeviation',i===0?3:4).attr('result','blur');
+  const m=f.append('feMerge'); m.append('feMergeNode').attr('in','blur'); m.append('feMergeNode').attr('in','SourceGraphic');
+});
+
+let allPaths=[],mapLoaded=false;
+
+fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  .then(r=>r.json()).then(world=>{
+    const countries=topojson.feature(world,world.objects.countries);
+    allPaths=svg.append('g').selectAll('path.country').data(countries.features).join('path')
+      .attr('class','country country-path').attr('d',path)
+      .attr('fill','#1a1c2a').attr('stroke','rgba(255,255,255,0.055)').attr('stroke-width',.4)
+      .attr('cursor',d=>{ const iso=numericToIso[String(d.id).padStart(3,'0')]; return iso&&isoSet.has(iso)?'pointer':'default'; })
+      .on('mousemove',function(event,d){
+        const iso=numericToIso[String(d.id).padStart(3,'0')];
+        if(!iso||!isoSet.has(iso))return;
+        const entry=Object.entries(visited).find(([,v])=>v.iso===iso);
+        if(!entry)return;
+        const [cname,cdata]=entry;
+        const box=mapbox.getBoundingClientRect();
+        tip.style.display='block';
+        tip.style.left=(event.clientX-box.left+14)+'px';
+        tip.style.top=(event.clientY-box.top-14)+'px';
+        tip.innerHTML=`<span style="font-size:19px">${cdata.flag}</span><strong style="color:#f0f0e8;margin-left:6px">${cname}</strong>${cdata.lived?'<span style="color:#f5c842;font-size:11px;margin-left:6px">⭐ Lived here</span>':''}<br><span style="color:#6e7080;font-size:12px">${cdata.note}</span>`;
+      })
+      .on('mouseleave',()=>{ tip.style.display='none'; });
+    mapLoaded=true; triggerScrollColor();
+  });
+
+function colorizeMap(progress){
+  if(!mapLoaded)return;
+  allPaths.each(function(d){
+    const iso=numericToIso[String(d.id).padStart(3,'0')];
+    if(!iso||!isoSet.has(iso))return;
+    const isLived=livedSet.has(iso);
+    const p=d3.select(this);
+    if(progress>0){
+      const t=Math.min(progress*1.4,1);
+      if(isLived){
+        p.attr('fill',`rgba(253,230,138,${0.55+t*0.35})`).attr('stroke',`rgba(253,230,138,${0.45+t*0.45})`).attr('stroke-width',0.4+t*1.1);
+      } else {
+        p.attr('fill',`rgba(245,200,66,${0.38+t*0.45})`).attr('stroke',`rgba(245,200,66,${0.3+t*0.55})`).attr('stroke-width',0.4+t*0.8);
+      }
+      if(t>0.8) p.attr('filter',isLived?'url(#glow-amber)':'url(#glow-gold)');
+    } else {
+      p.attr('fill','#1a1c2a').attr('stroke','rgba(255,255,255,0.055)').attr('stroke-width',.4).attr('filter',null);
+    }
+  });
+}
+
+function triggerScrollColor(){
+  const rect=document.getElementById('map-section').getBoundingClientRect();
+  const viewH=window.innerHeight;
+  const progress=Math.max(0,Math.min(1,(viewH-rect.top)/(rect.height+viewH)*2.2));
+  colorizeMap(progress);
+}
+window.addEventListener('scroll',triggerScrollColor,{passive:true});
+window.addEventListener('resize',triggerScrollColor,{passive:true});
+</script>
+</body>
+</html>
