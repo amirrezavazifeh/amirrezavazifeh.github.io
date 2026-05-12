@@ -274,6 +274,24 @@ let allPaths=[],mapLoaded=false;
 fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
   .then(r=>r.json()).then(world=>{
     const countries=topojson.feature(world,world.objects.countries);
+
+    // For France (numeric id 250), clip out American overseas territories
+    // by filtering multipolygon parts to only those whose centroid longitude > -20
+    const fraId = '250';
+    countries.features = countries.features.map(f => {
+      if (String(f.id).padStart(3,'0') !== fraId) return f;
+      if (f.geometry.type === 'MultiPolygon') {
+        const filtered = f.geometry.coordinates.filter(poly => {
+          // compute rough centroid lon of outer ring
+          const ring = poly[0];
+          const avgLon = ring.reduce((s,c)=>s+c[0],0)/ring.length;
+          return avgLon > -20; // keep only European/nearby parts
+        });
+        return {...f, geometry:{...f.geometry, coordinates: filtered}};
+      }
+      return f;
+    });
+
     allPaths=svg.append('g').selectAll('path.country').data(countries.features).join('path')
       .attr('class','country country-path').attr('d',path)
       .attr('fill','#1a1c2a').attr('stroke','rgba(255,255,255,0.055)').attr('stroke-width',.4)
