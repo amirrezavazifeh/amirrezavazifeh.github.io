@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Entertaining Visualization</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+
+<style>
+
+:root{
+    --bg:#f5f6fa;
+    --card:#ffffff;
+    --text:#1b1d27;
+    --secondary:#666a78;
+    --accent:#37409e;
+    --accent-soft:#eceeff;
+    --rule:#e4e6ef;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    line-height:1.75;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:70px 24px 40px;
+}
+
+header{
+    margin-bottom:64px;
+}
+
+header h1{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:600;
+    font-size:44px;
+    margin:0;
+    letter-spacing:-0.5px;
+}
+
+header p{
+    margin-top:16px;
+    color:var(--secondary);
+    font-size:17px;
+    max-width:640px;
+    text-align:justify;
+}
+
+.visualization{
+    background:var(--card);
+    border-radius:16px;
+    padding:34px 38px;
+    margin-bottom:38px;
+    box-shadow:0 1px 2px rgba(20,22,40,.04), 0 10px 28px rgba(20,22,40,.06);
+    border:1px solid var(--rule);
+    transition:box-shadow .2s ease, transform .2s ease;
+}
+
+.visualization:hover{
+    box-shadow:0 1px 2px rgba(20,22,40,.05), 0 16px 36px rgba(20,22,40,.09);
+    transform:translateY(-1px);
+}
+
+.visualization.placeholder{
+    box-shadow:none;
+    border:1px dashed var(--rule);
+    background:repeating-linear-gradient(135deg, var(--card), var(--card) 10px, #fafafd 10px, #fafafd 20px);
+}
+
+.visualization h2{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:600;
+    margin:0;
+    font-size:27px;
+    letter-spacing:-0.2px;
+}
+
+.venue{
+    display:inline-block;
+    margin-top:10px;
+    margin-bottom:20px;
+    color:var(--accent);
+    background:var(--accent-soft);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.02em;
+    padding:4px 10px;
+    border-radius:20px;
+}
+
+.visualization p{
+    margin-bottom:16px;
+    font-size:15.5px;
+    text-align:justify;
+}
+
+.eq{
+    margin:6px 0 22px;
+    overflow-x:auto;
+}
+
+.subhead{
+    font-weight:600;
+    font-size:15px;
+    margin:26px 0 10px;
+    color:var(--text);
+}
+
+.explain{
+    margin-top:4px;
+}
+
+.explain summary{
+    cursor:pointer;
+    list-style:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-weight:600;
+    font-size:14px;
+    color:var(--accent);
+    padding:4px 0;
+    user-select:none;
+}
+
+.explain summary::-webkit-details-marker{
+    display:none;
+}
+
+.explain summary::before{
+    content:"▸";
+    font-size:11px;
+    transition:transform .15s ease;
+}
+
+.explain[open] summary::before{
+    transform:rotate(90deg);
+}
+
+.explain summary::after{
+    content:"";
+}
+
+.explain[open] summary{
+    margin-bottom:8px;
+}
+
+.explain-body{
+    padding-top:8px;
+    border-top:1px solid var(--rule);
+    margin-top:8px;
+}
+
+.explain-body p:first-child{
+    margin-top:2px;
+}
+
+table.compare{
+    width:auto;
+    max-width:460px;
+    border-collapse:collapse;
+    font-size:12.5px;
+    margin-bottom:22px;
+}
+
+table.compare th, table.compare td{
+    text-align:left;
+    padding:6px 10px;
+    border-bottom:1px solid var(--rule);
+}
+
+table.compare th{
+    color:var(--secondary);
+    font-weight:600;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+}
+
+table.compare tr:last-child td{
+    border-bottom:none;
+}
+
+table.compare td.num, table.compare th.num{
+    text-align:right;
+    font-variant-numeric:tabular-nums;
+}
+
+table.compare tr.baseline td{
+    color:var(--secondary);
+    font-style:italic;
+}
+
+video{
+    width:100%;
+    border-radius:10px;
+    margin:8px 0 22px;
+    background:#0d0e14;
+}
+
+video.video-sm{
+    width:70%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.placeholder-note{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:220px;
+    border-radius:10px;
+    margin:8px 0 22px;
+    background:#fafafd;
+    border:1px dashed var(--rule);
+    color:var(--secondary);
+    font-size:14px;
+}
+
+.links{
+    font-size:14px;
+    color:var(--secondary);
+    border-top:1px solid var(--rule);
+    padding-top:16px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.links b{
+    color:var(--text);
+    font-weight:600;
+}
+
+.links a{
+    color:var(--accent);
+    text-decoration:none;
+}
+
+.links a:hover{
+    text-decoration:underline;
+}
+
+footer{
+    text-align:center;
+    color:#9498a3;
+    margin-top:20px;
+    font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>Visual Experiments</h1>
+
+<p>
+
+During my PhD I've made lots of videos trying to understand how optimization
+problems converge to their solutions, or how different hyperparameters of an
+algorithm shape the solution. This page collects some of those videos that I
+personally liked watching. Each video also has a brief introduction in case
+you want to learn more :)
+
+</p>
+
+</header>
+
+
+
+<!-- ========================================================= -->
+<!-- GaussianImage -->
+<!-- ========================================================= -->
+
+<section class="visualization">
+
+<h2>Representing Image as Gaussian Blobs</h2>
+
+<video controls autoplay muted loop>
+    <source src="data/gaussian_image.mp4" type="video/mp4">
+</video>
+
+<p>
+
+The video above shows an image being formed from 200, 1,000, and 10,000
+Gaussian blobs, each optimized for 50,000 iterations. The 200 little blobs
+are doing their best to represent the image :)
+
+</p>
+
+<details class="explain">
+<summary>Read more</summary>
+
+<div class="explain-body">
+
+<p>
+
+An image can be represented as sets of 2D Gaussians instead of an RGB value
+for each pixel. In this representation, each Gaussian is parameterized by a
+learnable center $(\mu x, \mu y)$, a covariance matrix $\Sigma$, and a
+learnable RGB color $c$. To be sure the covariance matrix is always positive
+semi-definite, it's built from just three learnable entries of a
+lower-triangular matrix $L$ rather than learned directly:
+
+</p>
+
+<div class="eq">
+$$
+L = \begin{bmatrix} l1 & 0 \\ l2 & l3 \end{bmatrix}, \qquad
+\Sigma = LL^\top
+$$
+</div>
+
+<p>
+
+Rendering stays fast by never touching irrelevant pixels: each Gaussian's
+center and covariance are projected into pixel space and binned into the
+16&times;16 image tiles its footprint overlaps, so only nearby Gaussians are
+evaluated at any given tile. Every pixel $p$ inside those tiles then
+accumulates a weighted contribution from each nearby Gaussian, peaking at
+the center and decaying outward:
+
+</p>
+
+<div class="eq">
+$$
+d = p - \mu, \qquad
+w(p) = \exp\!\left(-\tfrac{1}{2}\,d^\top \Sigma^{-1} d\right), \qquad
+C(p) = \sum c \cdot w(p)
+$$
+</div>
+
+<p>
+
+Because the whole pipeline is differentiable, gradient descent optimizes
+every position, covariance, and color directly against a target image. This
+representation can also be used as a compact representation of the image:
+each Gaussian only needs 8 float32 parameters, versus a raw 512&times;512&times;3
+uint8 tensor which takes 768&nbsp;KB to store. 200 Gaussians need just
+6.25&nbsp;KB (a 99.2% reduction), 1,000 Gaussians need 31.25&nbsp;KB (95.9%
+reduction), and 10,000 Gaussians need 312.5&nbsp;KB (59.3% reduction) — the
+more Gaussians used, the closer the reconstruction gets to the original
+image, at the cost of a smaller compression gain.
+
+</p>
+
+</div>
+
+</details>
+
+<div class="links">
+
+<div><b>Paper:</b> <a href="https://arxiv.org/abs/2403.08551" target="_blank">GaussianImage: 1000 FPS Image Representation and Compression by 2D Gaussian Splatting (ECCV 2024)</a></div>
+
+<div><b>Video:</b> produced with <a href="https://github.com/amirrezavazifeh/GaussianImage" target="_blank">this simplified reimplementation</a> I made of the algorithm.</div>
+
+<div><b>Code:</b> the code for the original paper is available <a href="https://github.com/Xinjie-Q/GaussianImage" target="_blank">here</a>.</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- Implicit Neural Representations -->
+<!-- ========================================================= -->
+
+<!--
+<section class="visualization placeholder">
+
+<h2>Implicit Neural Representations</h2>
+
+<div class="venue">add venue</div>
+
+<div class="placeholder-note">video: inr.mp4 (add when ready)</div>
+
+<p>
+
+Placeholder caption — briefly describe what the video shows once it's
+ready.
+
+</p>
+
+<details class="explain">
+<summary>Read more</summary>
+
+<div class="explain-body">
+
+<p>
+
+Placeholder description — an implicit neural representation (INR) replaces
+an explicit grid of values (pixels, voxels, mesh vertices) with a small
+neural network that maps a coordinate directly to a signal value:
+
+</p>
+
+<div class="eq">
+$$
+f_\theta(x, y) \;\longrightarrow\; (r, g, b)
+$$
+</div>
+
+<p>
+
+The network's weights $\theta$ are optimized so that querying every
+coordinate reconstructs the target signal, giving a continuous,
+resolution-independent representation. Replace this paragraph with the
+specific rendering/training details for the video below once it's ready.
+
+</p>
+
+</div>
+
+</details>
+
+<div class="links">
+
+<div><b>Paper:</b> <a href="#" target="_blank">add link</a></div>
+
+<div><b>Video:</b> produced with <a href="#" target="_blank">add your GitHub link</a>, a simplified reimplementation of the algorithm.</div>
+
+</div>
+
+</section>
+-->
+
+
+
+<!-- ========================================================= -->
+<!-- Phase Retrieval -->
+<!-- ========================================================= -->
+
+<section class="visualization">
+
+<h2>Phase Retrieval</h2>
+
+<video class="video-sm" controls autoplay muted loop>
+    <source src="data/HIO_vs_ER.mp4" type="video/mp4">
+</video>
+
+<p>
+
+The video above compares two classic iterative phase retrieval algorithms: Error Reduction (ER) and Hybrid Input Output (HIO), 
+recovering a signal from only the magnitude of its Fourier transform. HIO's feedback loop outside the support helps it 
+recover the image much better than ER.
+
+</p>
+
+<details class="explain">
+<summary>Read more</summary>
+
+<div class="explain-body">
+
+<p>
+
+Phase retrieval shows up in fields like X-ray crystallography, astronomical imaging, and microscopy,
+where detectors can measure intensity, and the phase information is lost.
+Phase retrieval algorithms recover a signal $\rho(r)$ when only the magnitude of its Fourier transform $\hat\rho(q)$ is measured. 
+Both ER and HIO iterate the same basic loop: Fourier transform the current estimate, replace its magnitude with the measured one, inverse
+transform back to real space, and update the estimate there:
+
+</p>
+
+<div class="eq">
+$$
+|\hat\rho(q)|^2 = I(q)
+$$
+</div>
+
+<p>
+
+The two algorithms differ only in how they update the estimate in real
+space outside the known support $S$. Error Reduction simply sets it to
+zero:
+
+</p>
+
+<div class="eq">
+$$
+\rho(r) = \begin{cases} \acute\rho(r), & r \in S \\ 0, & r \notin S \end{cases}
+$$
+</div>
+
+<p>
+
+Hybrid Input&ndash;Output instead feeds back a fraction of the previous
+estimate outside the support, which helps it escape the stagnation points
+ER tends to get stuck in:
+
+</p>
+
+<div class="eq">
+$$
+\rho(r) = \begin{cases} \acute\rho(r), & r \in S \\ \rho_{old}(r) - \beta\,\acute\rho(r), & r \notin S \end{cases}
+$$
+</div>
+
+<img src="data/phase_retrieval_algorithms.png" alt="Error Reduction vs Hybrid Input-Output algorithm diagram" style="width:100%; border-radius:10px; margin:6px 0 20px;">
+
+</div>
+
+</details>
+
+<div class="links">
+
+<div><b>Reference Paper:</b> <a href="https://opg.optica.org/ao/fulltext.cfm?uri=ao-21-15-2758" target="_blank">"Phase Retrieval Algorithms: A Comparison," Applied Optics 21, 2758&ndash;2769 (1982)</a></div>
+
+<div><b>Video:</b> The comparison of ER and HIO was produced with the code available <a href="https://github.com/amirrezavazifeh/Phase-Retrieval" target="_blank">here</a>.</div>
+
+<div><b>Learn more:</b> for a great overview of the mathematics behind phase retrieval, check out <a href="https://www.youtube.com/watch?v=8rJYhRMVvQw" target="_blank">this talk by Jeffrey Donatelli</a>.</div>
+
+</div>
+
+</section>
+
+
+
+<!--
+Future visualizations can duplicate the block above.
+-->
+
+<footer>
+
+More visualizations coming soon.
+
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.explain').forEach(function(d){
+  var s = d.querySelector('summary');
+  var update = function(){ s.textContent = d.open ? 'Read less' : 'Read more'; };
+  update();
+  d.addEventListener('toggle', update);
+});
+</script>
+
+</body>
+</html>
