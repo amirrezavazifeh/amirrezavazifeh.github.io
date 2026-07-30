@@ -302,7 +302,7 @@ you want to learn more :)
 
 <section class="visualization">
 
-<h2>Representing Image as Gaussian Blobs</h2>
+<h2>Image Representation with Gaussian Blobs</h2>
 
 <video controls autoplay muted loop>
     <source src="data/gaussian_image.mp4" type="video/mp4">
@@ -378,7 +378,7 @@ image, at the cost of a smaller compression gain.
 
 <div class="links">
 
-<div><b>Paper:</b> <a href="https://arxiv.org/abs/2403.08551" target="_blank">GaussianImage: 1000 FPS Image Representation and Compression by 2D Gaussian Splatting (ECCV 2024)</a></div>
+<div><b>Reference Paper:</b> <a href="https://arxiv.org/abs/2403.08551" target="_blank">GaussianImage: 1000 FPS Image Representation and Compression by 2D Gaussian Splatting (ECCV 2024)</a></div>
 
 <div><b>Video:</b> produced with <a href="https://github.com/amirrezavazifeh/GaussianImage" target="_blank">this simplified reimplementation</a> I made of the algorithm.</div>
 
@@ -394,19 +394,22 @@ image, at the cost of a smaller compression gain.
 <!-- Implicit Neural Representations -->
 <!-- ========================================================= -->
 
-<!--
-<section class="visualization placeholder">
 
-<h2>Implicit Neural Representations</h2>
+<section class="visualization">
 
-<div class="venue">add venue</div>
+<h2>Reconstructing an Image using 10% of its Pixels</h2>
 
-<div class="placeholder-note">video: inr.mp4 (add when ready)</div>
+<video controls autoplay muted loop>
+    <source src="data/inpainting_INR_90.mp4" type="video/mp4">
+</video>
 
 <p>
 
-Placeholder caption — briefly describe what the video shows once it's
-ready.
+The video above shows an image being reconstructed after 90% of its pixels
+were masked out. An implicit neural representation is overfit to only the
+remaining 10% of known pixels, then queried everywhere to fill in the missing regions. 
+Each frame shows the reconstruction at a different training iteration, 
+sharpening as training progresses. It's cool that just 10% of pixels can lead to a reasonable (not perfect btw) reconstruction of an image.
 
 </p>
 
@@ -417,9 +420,9 @@ ready.
 
 <p>
 
-Placeholder description — an implicit neural representation (INR) replaces
-an explicit grid of values (pixels, voxels, mesh vertices) with a small
-neural network that maps a coordinate directly to a signal value:
+Instead of representing an image as an explicit grid of RGB values, one per
+pixel, an image can be represented as a function mapping a pixel coordinate
+to its corresponding RGB value:
 
 </p>
 
@@ -431,10 +434,26 @@ $$
 
 <p>
 
-The network's weights $\theta$ are optimized so that querying every
-coordinate reconstructs the target signal, giving a continuous,
-resolution-independent representation. Replace this paragraph with the
-specific rendering/training details for the video below once it's ready.
+This is called an <b>implicit</b> representation: the image isn't stored
+directly, only implied by a small neural network $f_\theta$ (an MLP) whose
+weights are optimized to reconstruct the target image. This gives a few
+useful properties. It's <b>resolution-agnostic</b>, since the function can
+be queried at any coordinate, so the same trained network can be sampled
+at a resolution higher than it was trained on. It's <b>differentiable</b>,
+so it can be optimized directly with gradient descent. And its size
+doesn't scale with resolution: a raw image tensor grows with width,
+height, and channels, while a tiny fixed-size network can represent
+images at many different resolutions.
+
+</p>
+
+<p>
+
+For this video, $f_\theta$ is trained on only 10% of the image's pixels,
+chosen at random, while the other 90% stay hidden. Since $f_\theta$ is a
+continuous function it can be queried everywhere, including at the hidden pixels. 
+The video shows this improving over training: early iterations give a blurry guess at the missing regions, 
+and later iterations sharpen as the network learns finer detail. However, 
 
 </p>
 
@@ -444,14 +463,14 @@ specific rendering/training details for the video below once it's ready.
 
 <div class="links">
 
-<div><b>Paper:</b> <a href="#" target="_blank">add link</a></div>
+<div><b>Reference Paper:</b> <a href="https://arxiv.org/abs/2006.09661" target="_blank">Implicit Neural Representations with Periodic Activation Functions (NeurIPS 2020)</a></div>
 
-<div><b>Video:</b> produced with <a href="#" target="_blank">add your GitHub link</a>, a simplified reimplementation of the algorithm.</div>
+<!-- <div><b>Video:</b> produced with <a href="#" target="_blank">add your GitHub link</a>, a simplified reimplementation of the algorithm.</div> -->
 
 </div>
 
 </section>
--->
+
 
 
 
