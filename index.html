@@ -82,6 +82,19 @@
     /* ── Footer ── */
     .footer { padding: 16px; text-align: right; font-size: 0.8em; color: #888; }
     .footer a { color: #888; }
+
+    /* ── Demo video popup ── */
+    .demo-modal {
+      width: min(1100px, 94vw); padding: 0; border: none;
+      border-radius: 8px; background: #000;
+    }
+    .demo-modal::backdrop { background: rgba(0, 0, 0, 0.75); }
+    .demo-modal video { width: 100%; max-height: 90vh; display: block; }
+    .demo-close {
+      position: absolute; top: 8px; right: 8px; z-index: 1;
+      width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer;
+      background: rgba(0, 0, 0, 0.6); color: #fff; font-size: 1.5rem; line-height: 1;
+    }
   </style>
 </head>
 <body>
@@ -159,7 +172,7 @@
         <span class="paper-links" style="font-size: 12.5px; margin-top: 5px; display: inline-block;">
           <a href="https://amirrezavazifeh.github.io/ViabiLens-Project-Page/">project page</a> /
           <a href="https://arxiv.org/abs/2610.10473">preprint</a> /
-          <a href="https://amirrezavazifeh.github.io/ViabiLens-Demo/">software demo</a>
+          <a href="#demo" class="open-demo">software demo</a>
         </span>
         <p style="font-size: 13px; color: #555; margin: 6px 0 0;">Live and dead cells show distinct morphological signatures in brightfield images, and a model trained on stained cells generalizes to unstained ones. Building on this, we present Viabilense, a deep learning pipeline for label-free cell counting and viability prediction.</p>      </td>
     </tr>
@@ -505,5 +518,32 @@
   </div>
 
 </div>
+
+<dialog id="demo-modal" class="demo-modal" aria-label="ViabiLens software demo">
+  <button type="button" class="demo-close" id="close-demo" aria-label="Close">&times;</button>
+  <video id="demo-video" controls playsinline preload="none"
+         controlsList="nodownload" disablePictureInPicture
+         oncontextmenu="return false;">
+    <source src="data/webapp_demo.mp4" type="video/mp4">
+  </video>
+</dialog>
+
+<script>
+  // Software demo video popup
+  (function () {
+    const modal = document.getElementById("demo-modal");
+    const video = document.getElementById("demo-video");
+    document.querySelectorAll(".open-demo").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        modal.showModal();
+        video.play().catch(function () {});
+      });
+    });
+    document.getElementById("close-demo").addEventListener("click", function () { modal.close(); });
+    modal.addEventListener("click", function (e) { if (e.target === modal) modal.close(); });
+    modal.addEventListener("close", function () { video.pause(); });
+  })();
+</script>
 </body>
 </html>
